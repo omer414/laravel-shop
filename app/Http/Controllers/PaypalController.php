@@ -81,7 +81,7 @@ class PaypalController extends PayumController
 
     public function createSubscribePayment(Request $request) {
         $request->attributes->set('payum_token', $request->input('payum_token'));
-dd('hi');
+
         $token = $this->getPayum()->getHttpRequestVerifier()->verify($request);
         $gateway = $this->getPayum()->getGateway($token->getGatewayName());
         $agreementStatus = new GetHumanStatus($token);
