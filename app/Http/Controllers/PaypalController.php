@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Payum\Core\Request\GetHumanStatus;
 use Payum\LaravelPackage\Controller\PayumController;
 use Payum\Paypal\ExpressCheckout\Nvp\Api;
+use Redirect;
 
 class PaypalController extends PayumController
 {
@@ -22,7 +24,7 @@ class PaypalController extends PayumController
 
         $captureToken = $this->getPayum()->getTokenFactory()->createCaptureToken('paypal_ec', $details, 'payment_done');
 
-        return \Redirect::to($captureToken->getTargetUrl());
+        return Redirect::to($captureToken->getTargetUrl());
     }
 
 /*    public function done($payum_token)
@@ -60,7 +62,8 @@ class PaypalController extends PayumController
     /************************** For subscriptions *************************/
     public function prepareSubscribeAgreement() {
 
-        $storage = $this->getPayum()->getStorage('Payum\Core\Model\ArrayObject');
+        //$storage = $this->getPayum()->getStorage('Payum\Core\Model\ArrayObject');
+        $storage = App::make('payum')->getStorage('Payum\Core\Model\ArrayObject');
 
         $details = $storage->create();
         $details['PAYMENTREQUEST_0_AMT'] = 0;
@@ -69,14 +72,16 @@ class PaypalController extends PayumController
         //$details['NOSHIPPING'] = 1;
         $storage->update($details);
 
-        $captureToken = $this->getPayum()->getTokenFactory()->createCaptureToken('paypal_ec', $details, 'paypal_subscribe');
+        //$captureToken = $this->getPayum()->getTokenFactory()->createCaptureToken('paypal_ec', $details, 'paypal_subscribe');
 
-        return \Redirect::to($captureToken->getTargetUrl());
+        $captureToken = App::make('payum.security.token_factory')->createCaptureToken('paypal-pro', $details, 'csi/payment_done');
+
+        return Redirect::to($captureToken->getTargetUrl());
     }
 
     public function createSubscribePayment(Request $request) {
         $request->attributes->set('payum_token', $request->input('payum_token'));
-
+dd('hi');
         $token = $this->getPayum()->getHttpRequestVerifier()->verify($request);
         $gateway = $this->getPayum()->getGateway($token->getGatewayName());
         $agreementStatus = new GetHumanStatus($token);
@@ -108,7 +113,7 @@ class PaypalController extends PayumController
 
         $captureToken = $this->getPayum()->getTokenFactory()->createCaptureToken('paypal_ec', $recurringPayment, 'payment_done');
 
-        return \Redirect::to($captureToken->getTargetUrl());
+        return Redirect::to($captureToken->getTargetUrl());
     }
 
 
