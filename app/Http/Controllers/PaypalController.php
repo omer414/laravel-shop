@@ -70,7 +70,7 @@ class PaypalController extends PayumController
         $storage->update($details);
 
         $captureToken = $this->getPayum()->getTokenFactory()->createCaptureToken('paypal_ec', $details, 'paypal_subscribe');
-
+dd($captureToken);
         return \Redirect::to($captureToken->getTargetUrl());
     }
 
