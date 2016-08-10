@@ -12,7 +12,7 @@ class CreatePaymentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('payments', function (Blueprint $table) {
+        Schema::create('payum_payments', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->text('details');
             $table->string('number');
@@ -32,6 +32,6 @@ class CreatePaymentsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('payments');
+        Schema::drop('payum_payments');
     }
 }

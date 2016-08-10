@@ -12,7 +12,7 @@ class CreatePaymentTokensTable extends Migration
      */
     public function up()
     {
-        Schema::create('payment_tokens', function (Blueprint $table) {
+        Schema::create('payum_tokens', function (Blueprint $table) {
             $table->string('hash')->primary();
             $table->text('details');
             $table->string('targetUrl');
@@ -29,6 +29,6 @@ class CreatePaymentTokensTable extends Migration
      */
     public function down()
     {
-        Schema::drop('payment_tokens');
+        Schema::drop('payum_tokens');
     }
 }
