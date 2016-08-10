@@ -72,9 +72,7 @@ class PaypalController extends PayumController
         //$details['NOSHIPPING'] = 1;
         $storage->update($details);
 
-        //$captureToken = $this->getPayum()->getTokenFactory()->createCaptureToken('paypal_ec', $details, 'paypal_subscribe');
-
-        $captureToken = App::make('payum.security.token_factory')->createCaptureToken('paypal-pro', $details, 'csi/payment_done');
+        $captureToken = $this->getPayum()->getTokenFactory()->createCaptureToken('paypal_ec', $details, 'paypal_subscribe');
 
         return Redirect::to($captureToken->getTargetUrl());
     }
