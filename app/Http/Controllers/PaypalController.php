@@ -13,6 +13,7 @@ use Payum\LaravelPackage\Controller\PayumController;
 use Payum\Paypal\ExpressCheckout\Nvp\Api;
 use Payum\Paypal\ExpressCheckout\Nvp\Request\Api\CreateRecurringPaymentProfile;
 use Redirect;
+use Response;
 
 class PaypalController extends PayumController
 {
@@ -56,7 +57,7 @@ class PaypalController extends PayumController
 
         $gateway->execute($status = new GetHumanStatus($token));
 
-        return \Response::json(array(
+        return Response::json(array(
             'status' => $status->getValue(),
             'details' => iterator_to_array($status->getFirstModel())
         ));
