@@ -9,6 +9,7 @@ use App\Http\Requests;
 use Payum\Core\Request\GetHumanStatus;
 use Payum\LaravelPackage\Controller\PayumController;
 use Payum\Paypal\ExpressCheckout\Nvp\Api;
+use Payum\Paypal\ExpressCheckout\Nvp\Request\Api\CreateRecurringPaymentProfile;
 use Redirect;
 
 class PaypalController extends PayumController
