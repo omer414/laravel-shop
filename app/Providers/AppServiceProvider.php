@@ -38,9 +38,9 @@ class AppServiceProvider extends ServiceProvider
                 ->addGateway('offline', ['factory' => 'offline'])
                 ->addGateway('paypal_ec', [
                     'factory' => 'paypal_express_checkout',
-                    'username' => 'EDIT ME',
-                    'password' => 'EDIT ME',
-                    'signature' => 'EDIT ME',
+                    'username' => 'warlox414-merchant_api1.gmail.com',
+                    'password' => 'Z9VFDKJA2FJQ5DZW',
+                    'signature' => 'ALGGHNwYi1b3f.SAFEBGIVyGMKAwAxeOTUcB8qI8ZeSPXiP02XSlsQtG',
                     'sandbox' => true
                 ]);
               //  ->setGatewayConfigStorage(new EloquentStorage(GatewayConfig::class));
