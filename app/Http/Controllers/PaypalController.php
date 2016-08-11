@@ -118,7 +118,7 @@ class PaypalController extends PayumController
     }
 
     public function resolveIpn(Request $request){
-        Log::info('Result:'.print_r($request, true));
+
         return true;
     }
 
