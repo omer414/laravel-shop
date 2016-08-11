@@ -35,9 +35,9 @@ Route::get('paydone', [
     'uses' => 'PaypalController@done'
 ]);
 
-/*// This is where paypal will send the payment notification
+// This is where paypal will send the payment notification
 Route::post('ipn-resolver', 'PaypalController@resolveIpn');
-
+/*
 // This is where the user will be redirected after successful transaction (return url)
 Route::post('payment-sucessfull', 'PaypalController@paymentSuccess');
 

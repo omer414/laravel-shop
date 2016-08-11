@@ -6,6 +6,7 @@ use App;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Log;
 use Payum\Core\Request\GetHumanStatus;
 use Payum\Core\Request\Sync;
 use Payum\LaravelPackage\Controller\PayumController;
@@ -114,6 +115,11 @@ class PaypalController extends PayumController
         $captureToken = $this->getPayum()->getTokenFactory()->createCaptureToken('paypal_ec', $recurringPayment, 'payment_done');
 
         return Redirect::to($captureToken->getTargetUrl());
+    }
+
+    public function resolveIpn(Request $request){
+        Log::info('Result:'.print_r($request, true));
+        return true;
     }
 
 
