@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Payum\Core\Request\GetHumanStatus;
+use Payum\Core\Request\Sync;
 use Payum\LaravelPackage\Controller\PayumController;
 use Payum\Paypal\ExpressCheckout\Nvp\Api;
 use Payum\Paypal\ExpressCheckout\Nvp\Request\Api\CreateRecurringPaymentProfile;
